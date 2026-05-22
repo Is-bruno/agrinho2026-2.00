@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Hortelã - Agrinho 2026</title>
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --primary-light: #e8f5e9;
+            --danger-color: #c62828;
+            --text-color: #333;
+            --bg-color: #f4f6f4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            max-width: 800px;
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .card h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 8px;
+            font-size: 1.4rem;
+        }
+
+        /* Estilização dos Controles (Sliders) */
+        .control-group {
+            margin-bottom: 25px;
+        }
+
+        .control-group label {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .control-group span {
+            color: var(--primary-color);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+        }
+
+        /* Barras de Progresso e Estado */
+        .status-group {
+            margin-bottom: 20px;
+        }
+
+        .status-group p {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .progress-bar-container {
+            background: #eee;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 25px;
+            width: 100%;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            color: white;
+            text-align: center;
+            line-height: 25px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: width 0.5s ease;
+        }
+
+        #barra-crescimento {
+            background-color: #4caf50;
+        }
+
+        #barra-saude {
+            background-color: #2196f3;
+        }
+
+        /* Área Visual da Planta */
+        .visual-planta {
+            background: var(--primary-light);
+            border: 2px dashed var(--primary-color);
+            border-radius: 8px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        /* Mensagens e Sustentabilidade */
+        #status-mensagem {
+            font-weight: 600;
+            text-align: center;
+            min-height: 50px;
+            margin-top: 15px;
+        }
+
+        .sustentabilidade-painel {
+            background: #fff8e1;
+            border-left: 4px solid #ffb300;
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Simulador de Cultivo Sustentável: Hortelã</h1>
+        <p><strong>Projeto Agrinho 2026</strong> — Agroforte, Futuro Sustentável: Equilíbrio entre Produção e Meio Ambiente</p>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>Manejo e Recursos</h2>
+            
+            <div class="control-group">
+                <label for="temp">Temperatura: <span id="val-temp">22°C</span></label>
+                <input type="range" id="temp" min="0" max="45" value="22">
+            </div>
+
+            <div class="control-group">
+                <label for="solo">Umidade do Solo: <span id="val-solo">75%</span></label>
+                <input type="range" id="solo" min="0" max="100" value="75">
+            </div>
+
+            <div class="sustentabilidade-painel">
+                🌱 <strong>Indicador de Sustentabilidade:</strong><br>
+                Água virtual consumida: <span id="agua-gasta">0.0</span> Litros.
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Monitorização em Tempo Real</h2>
+            
+            <div class="visual-planta" id="imagem-planta">
+                🫘 Semente na Terra
+            </div>
+
+            <div class="status-group">
+                <p>Estágio de Crescimento:</p>
+                <div class="progress-bar-container">
+                    <div id="barra-crescimento" class="progress-bar">0%</div>
+                </div>
+            </div>
+
+            <div class="status-group">
+                <p>Saúde da Planta:</p>
+                <div class="progress-bar-container">
+                    <div id="barra-saude" class="progress-bar">100%</div>
+                </div>
+            </div>
+
+            <div id="status-mensagem">O simulador está ativo. Ajuste os controlos para começar!</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

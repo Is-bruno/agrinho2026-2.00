@@ -1,0 +1,205 @@
+/* --- 1. CONFIGURAÇÕES GERAIS E CORES --- */
+:root {
+    --verde-escuro: #2e7d32;
+    --verde-claro: #4caf50;
+    --verde-fundo: #e8f5e9;
+    --terra: #8d6e63;
+    --agua: #0288d1;
+    --alerta: #c62828;
+    --cinza-fundo: #f5f5f5;
+    --texto: #333333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--cinza-fundo);
+    color: var(--texto);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* --- 2. CABEÇALHO DO PROJETO --- */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 900px;
+}
+
+header h1 {
+    color: var(--verde-escuro);
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+header p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* --- 3. ESTRUTURA PRINCIPAL (PAINEL + VISUALIZAÇÃO) --- */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Telas menores (celulares) ficam em uma coluna só */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Estilo padrão dos cartões/blocos */
+.card {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+    color: var(--verde-escuro);
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--verde-fundo);
+    padding-bottom: 10px;
+}
+
+/* --- 4. CONTROLES (SLIDERS) --- */
+.controle-grupo {
+    margin-bottom: 25px;
+}
+
+.controle-grupo label {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.controle-grupo label span {
+    color: var(--verde-escuro);
+}
+
+/* Customização dos sliders */
+input[type="range"] {
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: #ddd;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--verde-claro);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background: var(--verde-escuro);
+}
+
+/* --- 5. BARRAS DE STATUS (SAÚDE E CRESCIMENTO) --- */
+.status-grupo {
+    margin-bottom: 15px;
+}
+
+.status-grupo span {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.barra-fundo {
+    background-color: #eee;
+    width: 100%;
+    height: 25px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.barra-progresso {
+    height: 100%;
+    width: 0%; /* Controlado pelo JS */
+    text-align: center;
+    line-height: 25px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: width 0.5s ease-in-out, background-color 0.3s;
+}
+
+/* Cores específicas das barras */
+#barra-crescimento {
+    background-color: var(--verde-claro);
+}
+
+#barra-saude {
+    background-color: #ff9800; /* Laranja inicial, pode mudar conforme a saúde */
+}
+
+/* --- 6. EXIBIÇÃO DA PLANTA E MENSAGENS --- */
+.display-planta {
+    background-color: var(--verde-fundo);
+    border: 3px dashed var(--terra);
+    border-radius: 8px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--terra);
+}
+
+.mensagem-caixa {
+    background-color: #fffde7;
+    border-left: 5px solid #ffd54f;
+    padding: 12px;
+    border-radius: 4px;
+    min-height: 60px;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* --- 7. INDICADORES DE SUSTENTABILIDADE --- */
+.sustentabilidade-painel {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed #ccc;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+}
+
+.sustentabilidade-painel span strong {
+    color: var(--agua);
+}
