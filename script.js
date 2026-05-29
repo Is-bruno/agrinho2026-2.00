@@ -107,6 +107,28 @@ function verificarFinal() {
     }
 }
 
-// --- 5. INICIALIZAÇÃO O SIMULADOR ---
+// --- 5. INICIALIZAÇÃO DO SIMULADOR ---
+// Adiciona o botão de tentar novamente
+const botaoTentar = document.getElementById('botao-tentar');
+botaoTentar.addEventListener('click', reiniciarSimulador);
+
+function reiniciarSimulador() {
+    clearInterval(intervaloSimulador);
+    crescimento = 0;
+    saude = 100;
+    aguaGasta = 0;
+
+    barraCrescimento.style.width = '0%';
+    barraCrescimento.textContent = '0%';
+    barraSaude.style.width = '100%';
+    barraSaude.textContent = '100%';
+    txtAgua.textContent = '0.0';
+    txtStatus.textContent = 'Ajuste os controlos e tente novamente!';
+    txtStatus.style.color = '#333';
+    imgPlanta.textContent = '🫘 Semente na Terra';
+
+    intervaloSimulador = setInterval(processarCiclo, 2000);
+}
+
 // Executa a função 'processarCiclo' a cada 2 segundos (2000 milissegundos)
 intervaloSimulador = setInterval(processarCiclo, 2000);
